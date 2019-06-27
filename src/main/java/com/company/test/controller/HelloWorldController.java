@@ -13,7 +13,7 @@ public class HelloWorldController {
 	@RequestMapping("/helloworld.do")
 	public String helloworld(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
-		session.setAttribute("message","ÄãºÃ£¬ÊÀ½ç£¡");
+		session.setAttribute("message","ä½ å¥½ï¼Œä¸–ç•Œ");
 		return "helloworld";
 	}
 
