@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloWorldController {
-	
+	/**
+	 * 测试
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/helloworld.do")
 	public String helloworld(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
