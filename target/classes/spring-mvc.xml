@@ -40,13 +40,4 @@
 	            </list>
 	        </property>
 	    </bean>
-	    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-	        <property name="messageConverters">
-	            <list>
-	                <ref bean="mappingJacksonHttpMessageConverter"/>
-	            </list>
-	        </property>
-	    </bean>
-   		<!-- rest json related... end -->
-   		<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>  -->
 </beans>
