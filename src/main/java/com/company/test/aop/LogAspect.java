@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class LogAspect {
-	@Pointcut("execution(* com.company.test.controller.*.*(..))")//切点表达式
+	@Pointcut("execution(public * com.company.test.controller.*.*(..))")//切点表达式
 	public void log() {}
 	
 	@Before("log()")
@@ -29,10 +29,10 @@ public class LogAspect {
 		System.out.println("before aspect executing");
 	}
 	
-	@After("log()")
-	public void after(JoinPoint joinPoint) {
-		System.out.println("after aspect executed");
-	}
+	/*
+	 * @After("log()") public void after(JoinPoint joinPoint) {
+	 * System.out.println("after aspect executed"); }
+	 */
 
 	
 
@@ -42,20 +42,14 @@ public class LogAspect {
 				+ returnVal);
 	}
 
-	@Around("log()")
-	public void around(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("around start..");
-		try {
-			pjp.proceed();
-		} catch (Throwable ex) {
-			System.out.println("error in around");
-			throw ex;
-		}
-		System.out.println("around end");
-	}
-
-	@AfterThrowing(pointcut = "log()", throwing = "error")
-	public void afterThrowing(JoinPoint jp, Throwable error) {
-		System.out.println("error:" + error);
-	}
+	/*
+	 * @Around("log()") public void around(ProceedingJoinPoint pjp) throws Throwable
+	 * { System.out.println("around start.."); try { pjp.proceed(); } catch
+	 * (Throwable ex) { System.out.println("error in around"); throw ex; }
+	 * System.out.println("around end"); }
+	 * 
+	 * @AfterThrowing(pointcut = "log()", throwing = "error") public void
+	 * afterThrowing(JoinPoint jp, Throwable error) { System.out.println("error:" +
+	 * error); }
+	 */
 }
