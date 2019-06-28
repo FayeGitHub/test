@@ -9,7 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-
+/**
+ * 	自定义注解功能
+ * @author ThinkPad
+ *
+ */
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 	

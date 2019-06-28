@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 权限验证注解类
+ * 	权限验证注解类
  *
  */
 @Documented
