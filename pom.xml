@@ -29,23 +29,39 @@
         <artifactId>spring-webmvc</artifactId>  
         <version>4.1.4.RELEASE</version>  
     </dependency>  
-     <dependency>
-   <groupId>org.springframework</groupId>
-   <artifactId>spring-tx</artifactId>
-   <version>4.1.4.RELEASE</version>
-  </dependency>
-  <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-<dependency>
-    <groupId>commons-dbcp</groupId>
-    <artifactId>commons-dbcp</artifactId>
-    <version>1.4</version>
-</dependency>
-  <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-jdbc</artifactId>
-    <version>4.1.4.RELEASE</version>
-</dependency>
+	<dependency>
+   		<groupId>org.springframework</groupId>
+   		<artifactId>spring-tx</artifactId>
+   		<version>4.1.4.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+	<dependency>
+	    <groupId>commons-dbcp</groupId>
+	    <artifactId>commons-dbcp</artifactId>
+	    <version>1.4</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>4.1.4.RELEASE</version>
+	</dependency>
+	<!-- sun add 测试 spring AOP -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+		<version>4.1.4.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+		<version>1.6.12</version>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.6.12</version>
+	</dependency>
 		
   </dependencies>
  <build>

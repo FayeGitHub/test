@@ -19,6 +19,7 @@ public class HelloWorldController {
 	public String helloworld(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
 		session.setAttribute("message","你好，世界");
+		System.out.println("你好，程序员!");
 		return "helloworld";
 	}
 	@RequestMapping("/index")  
