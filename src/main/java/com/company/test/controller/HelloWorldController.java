@@ -21,5 +21,8 @@ public class HelloWorldController {
 		session.setAttribute("message","你好，世界");
 		return "helloworld";
 	}
-
+	@RequestMapping("/index")  
+    public String home(HttpServletRequest request, HttpServletResponse response) {  
+        return "index";  
+    }  
 }
