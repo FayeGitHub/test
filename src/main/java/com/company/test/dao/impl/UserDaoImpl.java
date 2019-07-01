@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public boolean login(User user) {
 		// TODO Auto-generated method stub
-		String sql = "select * from `user` where username = ? and passworld = ?;";
+		String sql = "select * from `user` where username = ? and password = ?;";
 		List<User> userList = jdbcTemplate.query(sql,  new BeanPropertyRowMapper<User>(User.class),user.getUsername(),user.getPassword());
 		if(userList.isEmpty()) {
 			return false;

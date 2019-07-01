@@ -48,23 +48,24 @@
 	function signIn(){
 		 $.ajax({
              type:"post",//type可以为post也可以为get
-             url:path + "/json/signIn.do",
-             //data:{"username":q},//这行不能省略，如果没有数据向后台提交也要写成data:{}的形式
+             url:path + "/login.do",
+             data:{
+            	 "username":$("#username").val(),
+            	 "password":$("#password").val()
+            	 },//这行不能省略，如果没有数据向后台提交也要写成data:{}的形式
              dataType:"json",//这里要注意如果后台返回的数据不是json格式，那么就会进入到error:function(data){}
              success:function(data){
-            	 //alert(data);
-            	 alert(data.result);
-                 /* $("#username-info").css("display","block");
-                 if(data.availiable==="0"){
-                     $("#username-info").css("color","green");
-                 }else{
-                     $("#username-info").css("color","red");
-                 }
-                 $("#username-info").val(data.info); */
+            	 if(data==true){
+	                 $("#loginInfo").css("display","none");
+	                 $("#userInfo").css("display","block");
+	                 $("#userInfo").css("color","#9d9d9d");
+	                 $("#userInfo").html("用户"+$("#username").val()+"已登录");
+            	 }else{
+            		 alert("登录失败！");
+            	 }
              },
              error:function(data){
-            	 alert(2);
-                 //alert("用户名提交出现了错误！");
+                 alert("用户登录信息提交出现了错误！");
              }
          });
 
@@ -83,15 +84,18 @@
           <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="button" onclick="signIn()" class="btn btn-success">Sign in</button>
-          </form>
+        <div id="loginInfo">
+	          <form class="navbar-form navbar-right">
+	            <div class="form-group">
+	              <input type="text" id="username" name="username"  placeholder="Email" class="form-control">
+	            </div>
+	            <div class="form-group">
+	              <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+	            </div>
+	            <button type="button" onclick="signIn()" class="btn btn-success">Sign in</button>
+	          </form>
+          </div>
+          <div id="userInfo"  style="float:right;padding:15px 15px;diplay:none;font-weight:bold;"></div>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>

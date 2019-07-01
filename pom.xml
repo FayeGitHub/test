@@ -68,11 +68,28 @@
 	  <artifactId>mysql-connector-java</artifactId>
 	  <version>8.0.11</version>
 	</dependency>
+	<!-- cff增加测试用例依赖 -->
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-test</artifactId>
 		<version>4.1.4.RELEASE</version>
 	</dependency>
+	<!-- cff增加返回json依赖 -->
+	<dependency>  
+                <groupId>com.fasterxml.jackson.core</groupId>  
+                <artifactId>jackson-core</artifactId>  
+                <version>2.1.0</version>  
+            </dependency>  
+            <dependency>  
+                <groupId>com.fasterxml.jackson.core</groupId>  
+                <artifactId>jackson-databind</artifactId>  
+                <version>2.1.0</version>  
+            </dependency>  
+            <dependency>  
+                <groupId>com.fasterxml.jackson.core</groupId>  
+                <artifactId>jackson-annotations</artifactId>  
+                <version>2.1.0</version>  
+	</dependency>   
   </dependencies>
  <build>
     <finalName>test</finalName>
