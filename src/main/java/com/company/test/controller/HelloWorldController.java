@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.test.model.User;
-//import com.company.test.utils.ExcelUtils;
+import com.company.test.utils.ExcelUtils;
 import com.mysql.cj.util.StringUtils;
 
 import org.apache.logging.log4j.LogManager;
@@ -53,7 +53,7 @@ public class HelloWorldController {
 	public String exportOrder(HttpServletRequest request, HttpServletResponse response){	
 		//String userName = request.getParameter("userName");
 		
-		/*
+		
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		
 		Map<String, String> headNameMap = new LinkedHashMap<String, String>();
@@ -82,7 +82,7 @@ public class HelloWorldController {
 		}
 		
 		ExcelUtils.exportXlsx(response, "用户数据", headNameMap, list);
-		*/
+		
 		return null;
 	}
 }
