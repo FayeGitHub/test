@@ -1,183 +1,195 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.company.test</groupId>
-  <artifactId>test</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>test Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <poi.version>3.15</poi.version>
-  </properties>
-  <dependencies>
-	<dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-	<dependency>  
-        <groupId>javax.servlet</groupId>  
-        <artifactId>servlet-api</artifactId>  
-        <version>2.5</version>  
-    </dependency>  
-    <dependency>  
-        <groupId>org.springframework</groupId>  
-        <artifactId>spring-webmvc</artifactId>  
-        <version>4.1.4.RELEASE</version>  
-    </dependency>  
-	<dependency>
-   		<groupId>org.springframework</groupId>
-   		<artifactId>spring-tx</artifactId>
-   		<version>4.1.4.RELEASE</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-	<dependency>
-	    <groupId>commons-dbcp</groupId>
-	    <artifactId>commons-dbcp</artifactId>
-	    <version>1.4</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-jdbc</artifactId>
-	    <version>4.1.4.RELEASE</version>
-	</dependency>
-	<!-- sun add 测试 spring AOP -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-aop</artifactId>
-		<version>4.1.4.RELEASE</version>
-	</dependency>
-	<dependency>
-		<groupId>org.aspectj</groupId>
-		<artifactId>aspectjrt</artifactId>
-		<version>1.6.12</version>
-	</dependency>
-	<dependency>
-		<groupId>org.aspectj</groupId>
-		<artifactId>aspectjweaver</artifactId>
-		<version>1.6.12</version>
-	</dependency>
-	<!-- cff 增加连接mysql8依赖包	 -->
-	<dependency>
-	  <groupId>mysql</groupId>
-	  <artifactId>mysql-connector-java</artifactId>
-	  <version>8.0.11</version>
-	</dependency>
-	<!-- cff增加测试用例依赖 -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-test</artifactId>
-		<version>4.1.4.RELEASE</version>
-	</dependency>
-	<!-- cff增加返回json依赖 -->
-	<dependency>  
-                <groupId>com.fasterxml.jackson.core</groupId>  
-                <artifactId>jackson-core</artifactId>  
-                <version>2.1.0</version>  
-            </dependency>  
-            <dependency>  
-                <groupId>com.fasterxml.jackson.core</groupId>  
-                <artifactId>jackson-databind</artifactId>  
-                <version>2.1.0</version>  
-            </dependency>  
-            <dependency>  
-                <groupId>com.fasterxml.jackson.core</groupId>  
-                <artifactId>jackson-annotations</artifactId>  
-                <version>2.1.0</version>  
-	</dependency>
-	<!-- sun add Log4J日志依赖包 -->
-	<dependency>
-	  <groupId>org.apache.logging.log4j</groupId>
-	  <artifactId>log4j-api</artifactId>
-	  <version>2.6.2</version>
-	</dependency>
-	<dependency>
-	  <groupId>org.apache.logging.log4j</groupId>
-	  <artifactId>log4j-core</artifactId>
-	  <version>2.6.2</version>
-	</dependency>   
-	<dependency>
-	    <groupId>org.apache.logging.log4j</groupId>
-	    <artifactId>log4j-web</artifactId>
-	    <version>2.6.2</version>
-	</dependency>
-	<!-- sun add POI  for excel export start -->
-	<dependency>
-	    <groupId>org.apache.poi</groupId>
-	    <artifactId>poi</artifactId>
-	    <version>3.15</version>
-    </dependency>
-    <dependency>
-	    <groupId>org.apache.poi</groupId>
-	    <artifactId>poi-ooxml</artifactId>
-	    <version>3.15</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.apache.poi</groupId>
-	    <artifactId>poi-ooxml-schemas</artifactId>
-	    <version>3.15</version>
-	</dependency>
-	<dependency>  
-      <groupId>org.apache.xmlbeans</groupId>  
-      <artifactId>xmlbeans</artifactId>  
-      <version>2.4.0</version>  
-    </dependency>
-    <dependency>
-	    <groupId>org.apache.commons</groupId>
-	    <artifactId>commons-collections4</artifactId>
-	    <version>4.1</version>
-	</dependency>
-    <!-- POI end -->
-    <!-- sun add commons-lang for excel export start -->
-	<dependency>
-    	<groupId>org.apache.commons</groupId>
-    	<artifactId>commons-lang3</artifactId>
-    	<version>3.8</version>
-	</dependency>
-    
-    <!-- commons-lang end -->
-  </dependencies>
- <build>
-    <finalName>test</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>2.5</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.3.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>2.1.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.company.test</groupId>
+	<artifactId>test</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>test Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<poi.version>3.15</poi.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>
+		<!-- sun add 测试 spring AOP -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.6.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.12</version>
+		</dependency>
+		<!-- cff 增加连接mysql8依赖包 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.11</version>
+		</dependency>
+		<!-- cff增加测试用例依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.1.4.RELEASE</version>
+		</dependency>
+		<!-- cff增加返回json依赖 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<!-- sun add Log4J日志依赖包 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<!-- sun add POI for excel export start -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.1</version>
+		</dependency>
+		<!-- POI end -->
+		<!-- sun add commons-lang for excel export start -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.8</version>
+		</dependency>
+		<!-- commons-lang end -->
+		<!-- sun add file upload -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>test</finalName>
+		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
+				defaults (may be moved to parent pom) -->
+			<plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				<!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.1.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 </project>
