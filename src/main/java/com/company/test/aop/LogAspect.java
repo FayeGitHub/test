@@ -9,10 +9,20 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.DefaultParameterNameDiscoverer;
+import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+
+import java.lang.reflect.Method;
 import java.net.URLDecoder;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,6 +31,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,21 +51,34 @@ public class LogAspect {
     private static final ObjectMapper objectMapper = new ObjectMapper()
             .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
-	
 	@Pointcut("execution(public * com.company.test.controller.*.*(..))")//切点表达式
 	public void log() {}
 	
 	@Before("log()")
-	public void before(JoinPoint joinPoint) {
+	public void before(JoinPoint joinPoint) throws Exception {
 		//如果需要这里可以取出参数进行处理
-		//Object[] args = joinPoint.getArgs();
-		RequestAttributes ra = RequestContextHolder.getRequestAttributes();
-        ServletRequestAttributes sra = (ServletRequestAttributes) ra;
-        HttpServletRequest request = sra.getRequest();
-        long startTime = System.currentTimeMillis();
-        request.setAttribute("startTime",startTime);
-
-		System.out.println("before aspect executing");
+		ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
+				.getRequestAttributes();
+		HttpServletRequest request = requestAttributes.getRequest();
+		// 打印请求内容
+		logger.info("===============请求内容开始===============");
+		logger.info("请求地址:" + request.getRequestURL().toString());
+		logger.info("请求方式:" + request.getMethod());
+		logger.info("请求类方法:" + joinPoint.getSignature());
+		//参数
+		Enumeration<String> paramter = request.getParameterNames();
+		if(!paramter.hasMoreElements()) {
+			logger.info("该方法没有传入参数");
+		}else {
+			logger.info("该方法传入的参数如下：");
+		}
+		while (paramter.hasMoreElements()) {
+			String str = (String) paramter.nextElement();
+			logger.info(str + "={}", request.getParameter(str));
+		}
+		logger.info("===============请求内容结束===============");
+		
+//		System.out.println("AOP before aspect executing");
 	}
 	
 	/*
@@ -66,11 +90,10 @@ public class LogAspect {
 
 	@AfterReturning(pointcut = "log()", returning = "returnVal")
 	public void afterReturning(JoinPoint joinPoint, Object returnVal) {
-		System.out.println("afterReturning executed, return result is "
-				+ returnVal);
+		System.out.println("afterReturning executed, return result is " + returnVal);
 	}
 
-	
+	/*
 	 @Around("log()") 
 	 public Object  around(ProceedingJoinPoint pjp) throws Throwable
 	 { 
@@ -109,11 +132,10 @@ public class LogAspect {
 		}
 		return result;
 	 }
-	 
+	 */
 	/*
 	 * @AfterThrowing(pointcut = "log()", throwing = "error") public void
 	 * afterThrowing(JoinPoint jp, Throwable error) { System.out.println("error:" +
 	 * error); }
 	 */
-	
 }
