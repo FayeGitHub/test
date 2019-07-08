@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.company.test.interceptor.DataSourceType;
+import com.company.test.interceptor.UseDataSource;
 import com.company.test.model.User;
 import com.company.test.service.UserService;
 
@@ -26,6 +28,10 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/login")  
+	@UseDataSource(DataSourceType.SOURCE_1)
+	//@UseDataSource(source = "ds1")//第1种方式设置数据源
+	//@UseDataSource(useHashKey = true)//第2种方式设置数据源
+	//@UseDataSource(hashExp = "'ds_'+#uid")//第3种方式设置数据源
     public @ResponseBody boolean login(HttpServletRequest request, HttpServletResponse response) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
