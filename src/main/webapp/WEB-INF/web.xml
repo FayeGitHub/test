@@ -25,6 +25,8 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<!-- Spring 容器配置文件 -->
+	<!-- 20190226 sun add redis,
+			classpath*:redis-Context.xml-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>

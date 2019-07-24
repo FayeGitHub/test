@@ -12,11 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -35,6 +39,8 @@ public class HelloWorldController {
 	 * @param response
 	 * @return
 	 */
+	@Autowired
+	RedisTemplate redisTemplate;
 	Logger logger = LogManager.getLogger(HelloWorldController.class);
 	
 	@RequestMapping("/helloworld.do")
@@ -48,7 +54,15 @@ public class HelloWorldController {
 	@RequestMapping("/index")  
     public String home(HttpServletRequest request, HttpServletResponse response) {  
         return "index";  
-    }  
+    } 
+	@ResponseBody
+	@RequestMapping("/helloredis.do")
+	public String redisTest(){
+		//redisTemplate.opsForValue().set("test", "hello redis");
+        String obj = (String)redisTemplate.opsForValue().get("test");
+        System.out.println(obj);
+        return obj;
+   }
 	/**
 	 * 导出用户数据
 	 * @param request
