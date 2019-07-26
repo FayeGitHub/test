@@ -52,5 +52,4 @@
      
     <!-- 事务扫描开始(开启@Tranctional) -->  
     <tx:annotation-driven transaction-manager="txManager" />  
-      
 </beans>  

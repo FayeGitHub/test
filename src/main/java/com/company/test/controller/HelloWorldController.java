@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.company.test.model.User;
+import com.company.test.service.UserService;
 import com.company.test.utils.ExcelUtils;
 import com.mysql.cj.util.StringUtils;
 
@@ -41,6 +42,9 @@ public class HelloWorldController {
 	 */
 	@Autowired
 	RedisTemplate redisTemplate;
+	@Autowired
+	UserService userService;
+	
 	Logger logger = LogManager.getLogger(HelloWorldController.class);
 	
 	@RequestMapping("/helloworld.do")
@@ -57,11 +61,13 @@ public class HelloWorldController {
     } 
 	@ResponseBody
 	@RequestMapping("/helloredis.do")
-	public String redisTest(){
+	public User redisTest(User user){
 		//redisTemplate.opsForValue().set("test", "hello redis");
-        String obj = (String)redisTemplate.opsForValue().get("test");
-        System.out.println(obj);
-        return obj;
+//        String obj = (String)redisTemplate.opsForValue().get("test");
+		System.out.println("如果看到User从数据库查询，代表缓冲区没有该值");
+		User user1 = userService.get(user);
+        System.out.println(user.getUsername());
+        return user1;
    }
 	/**
 	 * 导出用户数据

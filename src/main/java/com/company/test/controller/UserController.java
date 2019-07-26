@@ -1,10 +1,18 @@
 package com.company.test.controller;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,5 +48,50 @@ public class UserController {
 		user.setPassword(password);
 		logger.info("信息：用户登录信息提交");
         return userService.login(user);
-    }  
+    }
+	@ResponseBody
+	@RequestMapping("/getUser")
+	public User redisTest(User user){
+		System.out.println("如果看到User从数据库查询，代表缓冲区没有该值");
+		User user1 = userService.get(user);
+        return user1; 
+   }
+	/**
+	 * 保存人员信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/save")
+	@ResponseBody
+	public String save(@Validated User user) {
+		userService.save(user);
+		return"success";
+	}
+	/**
+	 * 删除人员信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public String delete(User user) {
+		userService.delete(user);
+		return"success";
+	}
+	@RequestMapping("/validUser")
+    public String validUser(@Valid User user, BindingResult errors){
+		
+        if(errors.hasErrors()){
+            List<ObjectError> allErrors = errors.getAllErrors();
+            for(ObjectError objectError :allErrors){
+                String defaultMessage = objectError.getDefaultMessage();
+                String name = objectError.getObjectName().toString();
+                System.out.println(name+"="+defaultMessage);
+            }
+            System.out.println("allErrors="+allErrors.toArray());
+            return  "failed";
+        }
+        return  "success";
+    }
+	
 }

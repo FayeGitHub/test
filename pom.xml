@@ -163,7 +163,13 @@
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-redis</artifactId>
 		    <version>1.6.1.RELEASE</version>
-		</dependency>  
+		</dependency> 
+		<!-- sun add hibernate的注解验证功能，简化验证 -->
+		<dependency>  
+		       <groupId>org.hibernate</groupId>  
+		       <artifactId>hibernate-validator</artifactId>  
+		       <version>5.0.2.Final</version>  
+		 </dependency> 
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 <dependency>
     <groupId>com.microsoft.sqlserver</groupId>
